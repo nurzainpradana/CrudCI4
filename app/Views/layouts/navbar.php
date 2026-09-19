@@ -1,5 +1,5 @@
-<nav class="app-header navbar navbar-expand bg-body">
 
+<nav class="app-header navbar navbar-expand text-bg-sky bg-body" data-bs-theme="dark">
     <div class="container-fluid">
 
         <!-- Left navbar links -->

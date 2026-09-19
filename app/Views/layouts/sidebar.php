@@ -1,11 +1,13 @@
-<aside class="app-sidebar bg-dark shadow"
-       data-bs-theme="dark">
+<!-- <aside class="app-sidebar bg-dark shadow"
+    data-bs-theme="dark"> -->
+
+    <aside class="app-sidebar text-bg-navy" data-bs-theme="dark">
 
     <!-- Brand -->
     <div class="sidebar-brand">
 
         <a href="<?= base_url('/') ?>"
-           class="brand-link">
+            class="brand-link">
 
             <span class="brand-text fw-light">
                 CRUD CI4
@@ -27,7 +29,7 @@
                 <li class="nav-item">
 
                     <a href="<?= base_url('/') ?>"
-                       class="nav-link">
+                        class="nav-link">
 
                         <i class="nav-icon bi bi-speedometer"></i>
 
@@ -38,16 +40,30 @@
                     </a>
 
                 </li>
+                <li class="nav-item">
+
+                    <a href="<?= base_url('user') ?>"
+                        class="nav-link">
+
+                        <i class="nav-icon bi bi-people-fill"></i>
+
+                        <p>
+                            User
+                        </p>
+
+                    </a>
+
+                </li>
 
                 <li class="nav-item">
 
-                    <a href="<?= base_url('post') ?>"
-                       class="nav-link">
+                    <a href="<?= base_url('role') ?>"
+                        class="nav-link">
 
-                        <i class="nav-icon bi bi-file-text"></i>
+                        <i class="nav-icon bi bi-shield-check"></i>
 
                         <p>
-                            Post
+                            Role
                         </p>
 
                     </a>
