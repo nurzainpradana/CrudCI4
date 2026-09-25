@@ -3,7 +3,7 @@
 use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Peb::index');
 $routes->get('post', 'Post::index');
 $routes->get('post/create', 'Post::create');
 $routes->get('/post/edit/(:num)', 'Post::edit/$1');
@@ -61,11 +61,11 @@ $routes->post('/role/delete/(:num)', 'Role::delete/$1');
 
 /** AUTH */
 
-$routes->get('/', 'Auth::index');
 
 $routes->get('login', 'Auth::index');
 $routes->post('login', 'Auth::login');
 
 $routes->get('logout', 'Auth::logout');
 
-$routes->get('dashboard', 'Home::index');
+$routes->get('dashboard', 'Peb::index');
+$routes->get('peb', 'Peb::index');
