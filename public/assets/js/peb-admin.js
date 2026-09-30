@@ -1,8 +1,12 @@
 'use strict';
 window.PebAdmin = (() => {
-    function mount(root) {
+    function mount(root, initialSection) {
         root.innerHTML = `<div class="page-heading"><h1>Master Data</h1></div><div class="document-tabs" role="tablist" aria-label="Pengelolaan"><button role="tab" aria-selected="true" id="admin-tab-master" aria-controls="admin-panel" data-section="master">Referensi PEB</button><button role="tab" aria-selected="false" tabindex="-1" id="admin-tab-users" aria-controls="admin-panel" data-section="users">Pengguna</button><button role="tab" aria-selected="false" tabindex="-1" id="admin-tab-roles" aria-controls="admin-panel" data-section="roles">Hak akses</button></div><section class="panel" id="admin-panel" role="tabpanel"></section>`;
-        let selected = 'master';
+        let selected = initialSection || 'master';
+        if (initialSection) {
+            root.querySelector('h1').textContent = selected === 'users' ? 'Pengguna' : 'Master Data PEB';
+            root.querySelector('[role=tablist]').remove();
+        }
         const panel = root.querySelector('#admin-panel');
         const settings = {
             master: { title: 'Referensi PEB', columns: ['Jenis', 'Kode', 'Nama', 'Status'], fields: ['Jenis master', 'Kode', 'Nama'] },
@@ -10,7 +14,10 @@ window.PebAdmin = (() => {
         };
         function paint() {
             root.querySelectorAll('[role=tab]').forEach(tab => { const active = tab.dataset.section === selected; tab.setAttribute('aria-selected', String(active)); tab.tabIndex = active ? 0 : -1; });
-            panel.setAttribute('aria-labelledby', `admin-tab-${selected}`);
+            if (initialSection) {
+                panel.removeAttribute('role');
+                panel.setAttribute('aria-label', selected === 'users' ? 'Daftar pengguna' : 'Referensi PEB');
+            } else panel.setAttribute('aria-labelledby', `admin-tab-${selected}`);
             if (selected === 'roles') {
                 panel.innerHTML = '<div class="panel-heading"><h2>Hak akses Admin dan User</h2></div><div class="entry-fields"><p class="form-notice">Hak akses belum diterapkan pada halaman ini. Identitas dan izin harus berasal dari autentikasi backend.</p><div class="table-wrap"><table><thead><tr><th>Fitur</th><th>Admin</th><th>User / Exim</th></tr></thead><tbody><tr><td>Akun dan hak akses</td><td>Kelola</td><td>Tidak tersedia</td></tr><tr><td>Master data PEB</td><td>Kelola</td><td>Kelola</td></tr><tr><td>Draft, review, pengiriman PEB</td><td>Tidak tersedia</td><td>Kelola</td></tr><tr><td>Monitoring, respons, riwayat</td><td>Tidak tersedia</td><td>Lihat dan unduh</td></tr></tbody></table></div></div>';
                 return;

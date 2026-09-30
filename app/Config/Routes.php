@@ -69,3 +69,4 @@ $routes->get('logout', 'Auth::logout');
 
 $routes->get('dashboard', 'Peb::index');
 $routes->get('peb', 'Peb::index');
+$routes->get('peb/admin', 'Peb::admin');

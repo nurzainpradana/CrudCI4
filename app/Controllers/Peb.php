@@ -8,4 +8,9 @@ class Peb extends BaseController
     {
         return view('peb/index');
     }
+
+    public function admin(): string
+    {
+        return view('peb/index', ['adminPage' => true]);
+    }
 }
